@@ -1,0 +1,7 @@
+<div class='user'>
+    <div class='onlineStatus {{user.onlineStatus}}'></div>
+     <div class='userDetails'>
+        <div class='username'>{{user.username}}</div>
+        <div class='lastActive'>{{#if user.online}}{{else}}Last seen at {{user.lastSeen}}{{/if}}</div>
+    </div>
+</div>

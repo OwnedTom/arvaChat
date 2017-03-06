@@ -4,3 +4,8 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 16pt;
 }
+
+@font-face {
+    font-family: Icons;
+    src: url(../font/icons.woff);
+}
