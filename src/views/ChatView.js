@@ -7,6 +7,7 @@ import {Message, Messages}          from '../models/Message.js';
 import {MessageSurface}             from '../components/messageSurface.js';
 import {View}                       from 'arva-js/core/View.js';
 import {layout, event}              from 'arva-js/layout/decorators.js';
+import {Injection}                  from 'arva-js/utils/Injection.js';
 
 export class ChatView extends View {
     @layout.size(undefined, undefined)
@@ -24,13 +25,14 @@ export class ChatView extends View {
             message: message,
             user: this.options.user
         }),
-        dataStore: new Messages()
+        dataStore: this.options.allMessages
     })
 
     @layout.fullSize()
     @event.pipe('dbScrollView')
     scrollSurface = new Surface()
     constructor(options = {}) {
+        options.allMessages = Injection.get(Messages, {});
         super(options);
         this.dbScrollView.goToLastPage();
     }

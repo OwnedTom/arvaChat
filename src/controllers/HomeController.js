@@ -3,17 +3,18 @@ import {HomeView}                   from '../views/HomeView.js';
 import {Messages, Message}          from '../models/Message.js';
 import {UserSurface}                from '../components/userSurface.js';
 import {Users, User}                from '../models/User.js';
+import {Injection}                  from 'arva-js/utils/Injection.js';
 
 export class HomeController extends Controller {
     Index(){
-        let messages = new Messages();
-        this.users = new Users();
+        let messages = Injection.get(Messages, {});
+        this.users = Injection.get(Users, {});
         if(localStorage.arvaChat_userId) {
-            this.user = new User(localStorage.arvaChat_userId);
+            this.user = Injection.get(User, localStorage.arvaChat_userId);
 
         }
         else {
-            this.user = new User(undefined,{
+            this.user = Injection.get(User, {
                 username: "Guest"
             });
         }

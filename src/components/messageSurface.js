@@ -2,6 +2,7 @@ import {combineOptions} from 'arva-js/utils/CombineOptions.js';
 import Surface          from 'famous/core/Surface.js';
 import {User}           from '../models/User.js';
 import MessageSurfaceTemplate   from '../templates/message.hbs!';
+import {Injection}              from 'arva-js/utils/Injection';
 
 export class MessageSurface extends Surface {
     constructor(options) {
@@ -16,12 +17,10 @@ export class MessageSurface extends Surface {
             options.message.sDate = date.toLocaleDateString();
             options.message.sTime = date.toLocaleTimeString();
         }
-        options.message.oAuthor = new User(options.message.authorId);
-        
         super(combineOptions({
             content: MessageSurfaceTemplate({
                 message: options.message.message,
-                oAuthor: new User(options.message.authorId),
+                oAuthor: {},
                 timestamp: {
                     time: options.message.sTime,
                     date: options.message.sDate
@@ -29,16 +28,17 @@ export class MessageSurface extends Surface {
                 className: options.message.className
             }),
             size: [undefined, true]
-        }, options))
+        }, options));
         this.options = options;
+        this.oAuthor = Injection.get(User, options.message.authorId);
         var that = this;
-        options.message.oAuthor.on('value', function(user) {
-            that.setContent(MessageSurfaceTemplate({
+        this.oAuthor.on('value', (user) => {
+            this.setContent(MessageSurfaceTemplate({
                 message: that.options.message.message,
                 oAuthor: user,
                 timestamp: {
-                    time: this.sTime,
-                    date: this.sDate
+                    time: that.options.message.sTime,
+                    date: that.options.message.sDate
                 },
                 className:  options.message.className
             }))

@@ -11,3 +11,5 @@ res/icons
 res/screens
 store
 incrementBuildNum.js
+.vscode/settings.json
+src/App.js

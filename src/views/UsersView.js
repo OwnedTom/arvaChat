@@ -7,8 +7,11 @@ import {View}                       from 'arva-js/core/View.js';
 import {Users}                      from '../models/User.js';
 import {UserSurface}                from '../components/userSurface.js';
 import {layout, event}              from 'arva-js/layout/decorators.js';
+import {Injection}                  from 'arva-js/utils/Injection.js';
 
 export class UsersView extends View {
+    
+
     @layout.fullSize()
     @layout.translate(0, 0, 10)
     @layout.animate({
@@ -68,7 +71,7 @@ export class UsersView extends View {
             margins: 10
         },
         options: {
-            currentUser: this.options.user
+            currentUser: this.options.currentUser
         },
         dataFilter: (user) => {
             return !(user.username == this.options.user.username)
@@ -77,9 +80,13 @@ export class UsersView extends View {
             user: user,
             currentUser: this.options.user
         }),
-        dataStore: new Users()
+        dataStore: this.options.allUsers
     })
     constructor(options) {
+        options.allUsers = Injection.get(Users, {});
+        options.currentUser = options.allUsers.filter((user) => {
+            return user.id == localStorage.arvaChat_userId;
+        });
         super(options);
     }
 }

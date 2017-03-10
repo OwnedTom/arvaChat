@@ -4,6 +4,8 @@ import InputSurface                 from 'famous/surfaces/InputSurface.js';
 import {View}                       from 'arva-js/core/View.js';
 import {layout, event}              from 'arva-js/layout/decorators.js';
 import {ChangeNickView}             from './ChangeNickView.js';
+import {User}                       from '../models/User.js';
+import {Injection}                  from 'arva-js/utils/Injection.js';
 export class TopBarView extends View {
     @layout.fullSize()
     @layout.translate(0, 0, 1)
@@ -55,7 +57,7 @@ export class TopBarView extends View {
         }
     })
     nickButton = new Surface({
-        content: this.options.user.username,
+        content: this.options.currentUser.username,
         classes: ['nickButton']
     })
     // Create Change Nickname area
@@ -78,6 +80,7 @@ export class TopBarView extends View {
     changeNick = new ChangeNickView(this.options);
 
     constructor(options = {}) {
+        options.currentUser = Injection.get(User, localStorage.arvaChat_userId)
         super(options);
     }
 }
