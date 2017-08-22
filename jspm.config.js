@@ -347,6 +347,8 @@ SystemJS.config({
     "bitbucket:*.json"
   ],
   map: {
+    "jquery": "npm:jquery@3.2.1",
+    "ms-signalr-client": "npm:ms-signalr-client@2.2.7",
     "hbs": "github:davis/plugin-hbs@1.2.3",
     "domain": "npm:jspm-nodelibs-domain@0.2.0",
     "http": "npm:jspm-nodelibs-http@0.2.0",
@@ -356,7 +358,7 @@ SystemJS.config({
     "fastclick": "npm:fastclick@1.0.6",
     "famous-autosizetextarea": "github:ijzerenhein/famous-autosizetextarea@0.3.1",
     "es6-map": "npm:es6-map@0.1.4",
-    "arva-js": "github:bizboard/arva-js@1.1.1",
+    "arva-js": "github:bizboard/arva-js@develop",
     "assert": "npm:jspm-nodelibs-assert@0.2.0",
     "babel-polyfill": "npm:babel-polyfill@6.9.1",
     "buffer": "npm:jspm-nodelibs-buffer@0.2.0",
@@ -365,8 +367,8 @@ SystemJS.config({
     "crypto": "npm:jspm-nodelibs-crypto@0.2.0",
     "css": "github:systemjs/plugin-css@0.1.23",
     "events": "npm:jspm-nodelibs-events@0.2.0",
-    "famous": "github:bizboard/famous@0.3.7",
-    "famous-flex": "github:bizboard/famous-flex@1.3.11",
+    "famous": "github:bizboard/famous@develop",
+    "famous-flex": "github:bizboard/famous-flex@master",
     "firebase": "github:firebase/firebase-bower@3.4.0",
     "fs": "npm:jspm-nodelibs-fs@0.2.0",
     "lodash": "npm:lodash@4.16.2",
@@ -594,7 +596,7 @@ SystemJS.config({
         "es6-symbol": "npm:es6-symbol@3.1.0"
       }
     },
-    "github:bizboard/arva-js@1.1.1": {
+    "github:bizboard/arva-js@develop": {
       "map": {
         "eventemitter3": "npm:eventemitter3@1.2.0",
         "camelcase": "npm:camelcase@2.1.1",
@@ -605,13 +607,14 @@ SystemJS.config({
         "ordered-hashmap": "npm:ordered-hashmap@1.0.0",
         "firebase": "github:firebase/firebase-bower@3.4.0",
         "request-animation-frame-mock": "github:erykpiast/request-animation-frame-mock@0.1.8",
-        "famous": "github:bizboard/famous@0.3.7",
+        "famous": "github:bizboard/famous@develop",
         "fs": "npm:jspm-nodelibs-fs@0.2.0",
         "path": "npm:jspm-nodelibs-path@0.2.0",
-        "famous-flex": "github:bizboard/famous-flex@1.3.11"
+        "famous-flex": "github:bizboard/famous-flex@master",
+        "lodash-decorators": "npm:lodash-decorators@3.0.2"
       }
     },
-    "github:bizboard/famous-flex@1.3.11": {
+    "github:bizboard/famous-flex@master": {
       "map": {
         "es6-map": "npm:es6-map@0.1.4"
       }
@@ -924,6 +927,16 @@ SystemJS.config({
     "github:davis/plugin-hbs@1.2.3": {
       "map": {
         "handlebars": "github:components/handlebars.js@4.0.5"
+      }
+    },
+    "npm:lodash-decorators@3.0.2": {
+      "map": {
+        "lodash": "npm:lodash@4.16.2"
+      }
+    },
+    "npm:ms-signalr-client@2.2.7": {
+      "map": {
+        "jquery": "npm:jquery@2.2.4"
       }
     }
   }

@@ -7,6 +7,9 @@ import {provide}                    from 'arva-js/utils/di/Decorators.js';
 import {Injection}                  from 'arva-js/utils/Injection.js';
 import {DataSource}                 from 'arva-js/data/DataSource.js';
 import {App as ArvaApp}             from 'arva-js/core/App.js';
+import {$}  from 'jquery';
+import 'ms-signalr-client';
+import './signalr/server.js';
 
 /* Importing CSS in jspm bundled builds injects them into the DOM automagically */
 import './famous.css';
@@ -28,10 +31,11 @@ export class App extends ArvaApp {
     static defaultDataSource() {
         /* Firebase initialization */
         firebase.initializeApp({
-            apiKey: '<api-key>',
-            authDomain: '<subdomain>.firebaseapp.com',
-            databaseURL: 'https://<subdomain>.firebaseio.com',
-            storageBucket: '<subdomain>.appspot.com'
+            apiKey: "AIzaSyCqKyW2EDtInPEaLE9p0MkMULewbcJVjVA",
+            authDomain: "bizboard-test.firebaseapp.com",
+            databaseURL: "https://bizboard-test.firebaseio.com",
+            projectId: "bizboard-test",
+            storageBucket: "bizboard-test.appspot.com",
             messagingSenderId: "339656294433"
         });
         return new FirebaseDataSource('/', {});

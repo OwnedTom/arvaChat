@@ -4,20 +4,24 @@ import {Messages, Message}          from '../models/Message.js';
 import {UserSurface}                from '../components/userSurface.js';
 import {Users, User}                from '../models/User.js';
 import {Injection}                  from 'arva-js/utils/Injection.js';
+import {$}  from 'jquery';
+import 'ms-signalr-client';
+import '../signalr/server.js';
 
 export class HomeController extends Controller {
     Index(){
-        let messages = Injection.get(Messages, {});
-        this.users = Injection.get(Users, {});
-        if(localStorage.arvaChat_userId) {
-            this.user = Injection.get(User, localStorage.arvaChat_userId);
-
-        }
-        else {
-            this.user = Injection.get(User, {
-                username: "Guest"
-            });
-        }
+        let messages = Injection.get(Messages);
+        this.users = Injection.get(Users);
+        // if(localStorage.arvaChat_userId) {
+        //     this.user = Injection.get(User, localStorage.arvaChat_userId);
+        //
+        // }
+        // else {
+        //     this.user = Injection.get(User, {
+        //         username: "Guest"
+        //     });
+        // }
+        this.user = Injection.get(User);
         let that = this;
         var sendMessage = function(message) {
             messages.add({
